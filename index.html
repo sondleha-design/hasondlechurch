@@ -17,50 +17,95 @@ section{padding:120px 0}.head{display:flex;justify-content:space-between;gap:40p
 .wgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--l);border:1px solid var(--l)}.service{background:#fff;padding:34px 36px;display:flex;justify-content:space-between;gap:20px}.service b{font-size:18px}.time{text-align:right;color:#555;font-size:14px}.time strong{display:block;color:#111;font-size:17px}.time small{color:#888}
 .location{background:#111;color:#fff}.location .k{color:#cdb88d}.location .desc{color:#aaa}.locgrid{display:grid;grid-template-columns:1fr 1.05fr;gap:70px}.addr{font-size:25px;font-weight:750;line-height:1.55;margin:30px 0 12px}.note{color:#aaa;font-size:14px;margin-bottom:34px}.map{background:#fff;padding:10px;box-shadow:0 20px 60px #0003}.map img{width:100%}.cap{font-size:11px;color:#888;margin-top:8px}.maplinks{display:flex;gap:10px;flex-wrap:wrap}.maplinks a{border:1px solid #555;border-radius:999px;padding:12px 16px;font-size:12px;font-weight:800}
 footer{background:#0b0b0b;color:#888;padding:35px 0}.foot{display:flex;justify-content:space-between;align-items:center}.foot b{color:#fff;font-size:14px}.foot small{display:block;font-size:11px}.top{width:38px;height:38px;border:1px solid #444;border-radius:50%;display:grid;place-items:center;color:#fff}
+
+/* ===== Premium motion ===== */
+html{scroll-behavior:smooth}
+header{transition:box-shadow .45s ease,background .45s ease,transform .45s ease}
+header.scrolled{box-shadow:0 10px 35px #0000000b;background:#fffffff8}
+nav a{position:relative;transition:color .3s ease}
+nav a:after{content:"";position:absolute;left:0;bottom:-7px;width:100%;height:1px;background:var(--a);transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+nav a:hover{color:#777}nav a:hover:after{transform:scaleX(1)}
+.hero:before{content:"";position:absolute;width:760px;height:760px;right:-250px;top:-290px;border:1px solid #0000000a;border-radius:50%;transform:translate3d(0,var(--hero-shift,0px),0);transition:transform .1s linear}
+.hero:after{transform:translate3d(0,var(--hero-shift,0px),0);transition:transform .1s linear}
+.hero .inner>*{opacity:0;transform:translateY(26px);animation:heroIn .9s cubic-bezier(.2,.7,.2,1) forwards}
+.hero .inner .ey{animation-delay:.15s}.hero h1{animation-delay:.3s}.hero p{animation-delay:.5s}.hero .btn{animation-delay:.7s}
+@keyframes heroIn{to{opacity:1;transform:none}}
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.visible{opacity:1;transform:none}
+.reveal.delay-1{transition-delay:.08s}.reveal.delay-2{transition-delay:.16s}.reveal.delay-3{transition-delay:.24s}.reveal.delay-4{transition-delay:.32s}
+.timeline:before{transform-origin:top;transform:scaleY(0);transition:transform 1.5s cubic-bezier(.2,.7,.2,1)}
+.timeline.visible:before{transform:scaleY(1)}
+.item .dot{transform:scale(0);transition:transform .55s cubic-bezier(.2,1.5,.4,1)}
+.timeline.visible .item .dot{transform:scale(1)}
+.timeline.visible .item:nth-child(1) .dot{transition-delay:.15s}.timeline.visible .item:nth-child(2) .dot{transition-delay:.35s}.timeline.visible .item:nth-child(3) .dot{transition-delay:.55s}.timeline.visible .item:nth-child(4) .dot{transition-delay:.75s}
+.service{transition:transform .35s ease,box-shadow .35s ease,background .35s ease}
+.service:hover{transform:translateY(-5px);box-shadow:0 14px 35px #0000000d;position:relative;z-index:1}
+.map{transition:transform .6s cubic-bezier(.2,.7,.2,1),box-shadow .6s ease}.map:hover{transform:translateY(-5px);box-shadow:0 28px 70px #0004}
+.btn{transition:transform .3s ease,box-shadow .3s ease,background .3s ease}.btn:hover{transform:translateY(-3px);box-shadow:0 12px 30px #0003;background:#222}
+.maplinks a{transition:background .3s ease,color .3s ease,border-color .3s ease}.maplinks a:hover{background:#fff;color:#111;border-color:#fff}
+.scroll-cue{position:absolute;left:50%;bottom:28px;transform:translateX(-50%);z-index:2;color:#777;font-size:9px;letter-spacing:.24em;text-align:center;animation:cueFloat 2.2s ease-in-out infinite}.scroll-cue span{display:block;font-size:17px;line-height:1;margin-top:6px}
+@keyframes cueFloat{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,7px)}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero .inner>*{animation:none;opacity:1;transform:none}.reveal{opacity:1;transform:none;transition:none}.timeline:before{transform:none}.item .dot{transform:none;transition:none}.scroll-cue{animation:none}.hero:before,.hero:after{transform:none}.service,.map,.btn{transition:none}}
+
 @media(max-width:800px){.c{width:min(calc(100% - 36px),var(--mw))}.nav{height:68px}.menu{display:block}nav{display:none;position:absolute;top:68px;left:0;right:0;background:#fff;padding:20px 24px;border-bottom:1px solid var(--l)}nav.open{display:block}nav ul{display:block}nav li{border-bottom:1px solid #eee}nav a{display:block;padding:14px 0}.hero .inner{padding-top:70px}section{padding:85px 0}.head{display:block;margin-bottom:42px}.desc{margin-top:18px}.about-grid,.locgrid{grid-template-columns:1fr;gap:45px}.lead{font-size:23px}.timeline:before{left:69px}.item{grid-template-columns:69px 1fr;gap:30px}.dot{left:64px}.year{font-size:18px}.hist{font-size:15px}.wgrid{grid-template-columns:1fr}.service{padding:25px 22px}.service b{font-size:16px}.time strong{font-size:15px}.addr{font-size:21px}.foot{align-items:flex-start}}
 </style>
 </head>
 <body>
 <header><div class="c nav">
-<a class="brand" href="#home"><div class="mark">H</div><div><b>하손들교회</b><small>HASONDEUL CHURCH</small></div></a>
+<a class="brand" href="#home"><div class="mark">H</div><div><b>하손들교회</b><small>hasondle CHURCH</small></div></a>
 <button class="menu" aria-label="메뉴">☰</button>
 <nav><ul><li><a href="#about">교회 소개</a></li><li><a href="#history">연혁</a></li><li><a href="#worship">예배 시간 안내</a></li><li><a href="#location">오시는 길</a></li></ul></nav>
 </div></header>
 
 <main id="home">
-<section class="hero"><div class="c inner"><div class="ey">HASONDEUL CHURCH</div>
+<section class="hero"><div class="c inner"><div class="ey">hasondle CHURCH</div>
 <h1>세상의 수많은 목소리 가운데<br><span>변하지 않는 진리를</span> 듣습니다.</h1>
 <p>하나님을 바라보고, 말씀 안에서 함께 걸어가는 교회<br>하손들교회에 오신 것을 환영합니다.</p>
-<a class="btn" href="#about">교회 소개 보기 ↓</a></div></section>
+<a class="btn" href="#about">교회 소개 보기 ↓</a><div class="scroll-cue">SCROLL<span>↓</span></div></div></section>
 
-<section id="about"><div class="c"><div class="head"><div><div class="k">ABOUT US</div><h2>교회 소개</h2></div><p class="desc">성경에 나타난 예수님을 믿으며,<br>성령의 열매를 맺는 삶을 함께 소망합니다.</p></div>
-<div class="about-grid"><div><div class="tag">기독교한국침례회</div><div class="lead">정통 개신교 신앙 위에 서서<br>말씀과 예수 그리스도를 중심으로<br>함께 걸어가는 교회입니다.</div></div>
+<section id="about" class="reveal-section"><div class="c"><div class="head"><div><div class="k">ABOUT US</div><h2>교회 소개</h2></div><p class="desc">성경에 나타난 예수님을 믿으며,<br>성령의 열매를 맺는 삶을 함께 소망합니다.</p></div>
+<div class="about-grid reveal"><div><div class="tag">기독교한국침례회</div><div class="lead">정통 개신교 신앙 위에 서서<br>말씀과 예수 그리스도를 중심으로<br>함께 걸어가는 교회입니다.</div></div>
 <div class="copy"><p>하손들교회는 정통 교단인 <strong>기독교한국침례회</strong> 소속이며 <strong>개혁주의 신학(칼뱅주의)</strong>을 지향합니다.</p>
 <p>구원파, 귀신론, 신천지, 하나님의 교회, 동방 번개 파, 몰몬교, 여호와의 증인(왕국회관) 등과 전혀 다른, 개신교 교단 중에 네 번째로 큰 교단입니다.</p>
 <p>성경에 나타난 예수님을 믿는 교회이고, 성도들은 성령의 열매 맺기를 간구하며 살아가는 사람들입니다.</p>
 <a class="official" href="https://www.koreabaptist.or.kr/" target="_blank" rel="noopener">기독교한국침례회 홈페이지 ↗</a></div></div></div></section>
 
-<section class="history" id="history"><div class="c"><div class="head"><div><div class="k">OUR HISTORY</div><h2>연혁</h2></div><p class="desc">하나님의 인도하심을 따라<br>걸어온 하손들교회의 시간입니다.</p></div>
-<div class="timeline"><div class="item"><div class="year">1994</div><div class="dot"></div><div class="hist">봉천동 개척</div></div><div class="item"><div class="year">1996</div><div class="dot"></div><div class="hist">개봉동 이전</div></div><div class="item"><div class="year">2000</div><div class="dot"></div><div class="hist">인천 병방동 (가정교회)</div></div><div class="item"><div class="year">2004~</div><div class="dot"></div><div class="hist">계산동 이전</div></div></div></div></section>
+<section class="history reveal-section" id="history"><div class="c"><div class="head"><div><div class="k">OUR HISTORY</div><h2>연혁</h2></div><p class="desc">하나님의 인도하심을 따라<br>걸어온 하손들교회의 시간입니다.</p></div>
+<div class="timeline reveal"><div class="item"><div class="year">1994</div><div class="dot"></div><div class="hist">봉천동 개척</div></div><div class="item"><div class="year">1996</div><div class="dot"></div><div class="hist">개봉동 이전</div></div><div class="item"><div class="year">2000</div><div class="dot"></div><div class="hist">인천 병방동 (가정교회)</div></div><div class="item"><div class="year">2004~</div><div class="dot"></div><div class="hist">계산동 이전</div></div></div></div></section>
 
-<section id="worship"><div class="c"><div class="head"><div><div class="k">WORSHIP</div><h2>예배 시간 안내</h2></div><p class="desc">예배는 우리의 삶을 하나님께<br>다시 향하게 하는 시간입니다.</p></div>
-<div class="wgrid">
-<div class="service"><b>주일대예배</b><div class="time"><strong>주일 오전 10시 30분</strong></div></div>
-<div class="service"><b>아동부 예배</b><div class="time"><strong>주일 오후 2시</strong><small>4층</small></div></div>
-<div class="service"><b>학생부 예배</b><div class="time"><strong>주일 오후 2시</strong><small>3층</small></div></div>
-<div class="service"><b>청년회 예배</b><div class="time"><strong>토요일 오전 9시 30분</strong></div></div>
-<div class="service"><b>수요예배</b><div class="time"><strong>수요일 오후 7시 30분</strong></div></div>
+<section id="worship" class="reveal-section"><div class="c"><div class="head"><div><div class="k">WORSHIP</div><h2>예배 시간 안내</h2></div><p class="desc">예배는 우리의 삶을 하나님께<br>다시 향하게 하는 시간입니다.</p></div>
+<div class="wgrid reveal">
+<div class="service reveal delay-1"><b>주일대예배</b><div class="time"><strong>주일 오전 10시 30분</strong></div></div>
+<div class="service reveal delay-2"><b>아동부 예배</b><div class="time"><strong>주일 오후 2시</strong><small>4층</small></div></div>
+<div class="service reveal delay-3"><b>학생부 예배</b><div class="time"><strong>주일 오후 2시</strong><small>3층</small></div></div>
+<div class="service reveal delay-4"><b>청년회 예배</b><div class="time"><strong>토요일 오전 9시 30분</strong></div></div>
+<div class="service reveal delay-4"><b>수요예배</b><div class="time"><strong>수요일 오후 7시 30분</strong></div></div>
 </div></div></section>
 
-<section class="location" id="location"><div class="c"><div class="head"><div><div class="k">LOCATION</div><h2>오시는 길</h2></div><p class="desc">인천 계양구 계산동에 위치한<br>하손들교회를 찾아오세요.</p></div>
-<div class="locgrid"><div><div class="addr">인천 계양구 주부토로 532번길 8<br>3, 4층 하손들교회</div><div class="note">계산역 1번 출구 · 한국아파트 후문 맞은편<br>※ 카페 '낮엔 해처럼 밤엔 달처럼' 건물 3, 4층입니다.</div>
+<section class="location reveal-section" id="location"><div class="c"><div class="head"><div><div class="k">LOCATION</div><h2>오시는 길</h2></div><p class="desc">인천 계양구 계산동에 위치한<br>하손들교회를 찾아오세요.</p></div>
+<div class="locgrid reveal"><div><div class="addr">인천 계양구 주부토로 532번길 8<br>3, 4층 하손들교회</div><div class="note">계산역 1번 출구 · 한국아파트 후문 맞은편<br>※ 카페 '낮엔 해처럼 밤엔 달처럼' 건물 3, 4층입니다.</div>
 <div class="maplinks"><a href="https://map.naver.com/v5/search/인천%20계양구%20주부토로%20532번길%208" target="_blank">네이버지도 ↗</a><a href="https://map.kakao.com/?q=인천%20계양구%20주부토로%20532번길%208" target="_blank">카카오맵 ↗</a></div></div>
 <div class="map"><img src="assets/map.jpeg" alt="하손들교회 오시는 길 약도"><div class="cap">하손들교회 오시는 길 약도</div></div></div></div></section>
 </main>
-<footer><div class="c foot"><div><b>하손들교회</b><small>기독교한국침례회 · HASONDEUL CHURCH</small></div><a class="top" href="#home">↑</a></div></footer>
+<footer><div class="c foot"><div><b>하손들교회</b><small>기독교한국침례회 · hasondle CHURCH</small></div><a class="top" href="#home">↑</a></div></footer>
 <script>
 const btn=document.querySelector('.menu'),nav=document.querySelector('nav');
 btn.onclick=()=>{nav.classList.toggle('open');btn.textContent=nav.classList.contains('open')?'×':'☰'};
 document.querySelectorAll('nav a').forEach(a=>a.onclick=()=>nav.classList.remove('open'));
+
+// Premium scroll reveal + subtle parallax. Respects prefers-reduced-motion.
+const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(!reduceMotion){
+  const observer=new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}});
+  },{threshold:.14,rootMargin:'0px 0px -7% 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+  const header=document.querySelector('header');
+  const onScroll=()=>{
+    header.classList.toggle('scrolled',window.scrollY>18);
+    document.documentElement.style.setProperty('--hero-shift',Math.min(window.scrollY*.055,34)+'px');
+  };
+  onScroll(); window.addEventListener('scroll',onScroll,{passive:true});
+}
 </script>
 </body></html>
