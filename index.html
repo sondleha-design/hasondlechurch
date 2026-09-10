@@ -66,18 +66,16 @@ nav a:hover{color:#777}nav a:hover:after{transform:scaleX(1)}
 <nav><ul><li><a href="#about">교회 소개</a></li><li><a href="#history">연혁</a></li><li><a href="#worship">예배 시간 안내</a></li><li><a href="#location">오시는 길</a></li></ul></nav>
 </div></header>
 .church-video {
-  width: min(100% - 32px, 1100px);
-  margin: 56px auto 64px;
+  margin-top: 40px;
+  width: 100%;
 }
 
 .church-video video {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 16px;
-  overflow: hidden;
+  border-radius: 12px;
 }
-
 <main id="home">
 <section class="hero"><div class="c inner"><div class="ey">HASONDLE CHURCH</div>
 <h1>하나님의 손가락들로,<br><span>하나님의 뜻을</span> 세상에 나타냅니다.</h1>
@@ -92,7 +90,7 @@ nav a:hover{color:#777}nav a:hover:after{transform:scaleX(1)}
 <a class="official" href="https://www.koreabaptist.or.kr/" target="_blank" rel="noopener">기독교한국침례회 홈페이지 ↗</a></div></div></div></section>
   <!-- 교회 소개 영상 -->
 <div class="church-video">
-  <video controls playsinline preload="metadata">
+  <video muted playsinline controls preload="metadata">
     <source src="./church-video.MP4" type="video/mp4">
     브라우저에서 영상을 재생할 수 없습니다.
   </video>
@@ -135,5 +133,24 @@ if(!reduceMotion){
   };
   onScroll(); window.addEventListener('scroll',onScroll,{passive:true});
 }
+</script>
+  <script>
+  const churchVideo = document.querySelector('.church-video video');
+
+  if (churchVideo) {
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          churchVideo.play().catch(() => {});
+        } else {
+          churchVideo.pause();
+        }
+      });
+    }, {
+      threshold: 0.5
+    });
+
+    videoObserver.observe(churchVideo);
+  }
 </script>
 </body></html>
