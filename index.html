@@ -66,8 +66,10 @@ nav a:hover{color:#777}nav a:hover:after{transform:scaleX(1)}
 <nav><ul><li><a href="#about">교회 소개</a></li><li><a href="#history">연혁</a></li><li><a href="#worship">예배 시간 안내</a></li><li><a href="#location">오시는 길</a></li></ul></nav>
 </div></header>
 .church-video {
-  margin-top: 40px;
-  width: 100%;
+  width: calc(100vw - 24px);
+  margin: 56px 0 64px;
+  margin-left: 50%;
+  transform: translateX(-50%);
 }
 
 .church-video video {
